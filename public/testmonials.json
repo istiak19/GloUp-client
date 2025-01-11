@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Sarah Ahmed",
+        "location": "Dhaka, Bangladesh",
+        "feedback": "Exceptional service! My laptop screen was fixed perfectly and quickly. Highly recommend!",
+        "rating": 5
+    },
+    {
+        "name": "John Doe",
+        "location": "Chittagong, Bangladesh",
+        "feedback": "Professional and affordable service. My phone screen looks brand new!",
+        "rating": 4.5
+    },
+    {
+        "name": "Mehedi Hasan",
+        "location": "Sylhet, Bangladesh",
+        "feedback": "Great customer support and fast turnaround time. Will come back for sure!",
+        "rating": 4
+    },
+    {
+        "name": "Amina Rahman",
+        "location": "Khulna, Bangladesh",
+        "feedback": "Highly satisfied with the quality of service. Excellent attention to detail.",
+        "rating": 5
+    }
+]

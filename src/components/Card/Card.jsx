@@ -9,7 +9,7 @@ const Card = () => {
             </figure>
             <div className="card-body text-center">
                 <h2 className="card-title flex justify-center">Hair Color & Styling</h2>
-                <p>$99</p>
+                <p className='text-pink-500'>$99</p>
                 <p>Amazing flyers, social media posts and brand representations that would make your brand stand out.</p>
             </div>
         </div>
