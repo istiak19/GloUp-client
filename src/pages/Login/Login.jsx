@@ -1,10 +1,28 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import loginPic from '../../assets/Login-bro.png'
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 import { useForm } from 'react-hook-form';
+import useAuth from '../../Hook/useAuth';
+
 const Login = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+    const { signInUser } = useAuth()
     const { register, handleSubmit } = useForm()
-        const onSubmit = (data) => console.log(data)
+    const onSubmit = (data) => {
+        console.log(data)
+        signInUser(data.email, data.password)
+            .then(result => {
+                console.log(result.user)
+                navigate(from, { replace: true });
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
+    }
+
+
     return (
         <div className="hero">
             <div className="hero-content flex-col lg:flex-row-reverse">

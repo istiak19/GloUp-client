@@ -3,6 +3,8 @@ import MainLayout from '../src/MainLayout/MainLayout';
 import Home from '../src/pages/Home/Home';
 import Login from '../src/pages/Login/Login';
 import Register from '../src/pages/Register/Register';
+import PrivateRouter from './PrivateRouter';
+import Dashboard from '../src/pages/Dashboard/Dashboard';
 
 const routers = createBrowserRouter([
     {
@@ -20,6 +22,10 @@ const routers = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/dashboard',
+                element: <PrivateRouter><Dashboard></Dashboard></PrivateRouter>
             }
         ]
     },

@@ -1,7 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
 import logoPic from '../../assets/assets/logo2.png'
+import useAuth from "../../Hook/useAuth";
+import { CiUser } from "react-icons/ci";
 
 const Navbar = () => {
+    const { user, logOut } = useAuth()
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/portfolio'>Our Portfolio</NavLink></li>
@@ -9,6 +12,16 @@ const Navbar = () => {
         <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
         <li><NavLink to='/contact'>Contact Us</NavLink></li>
     </>
+
+    const handleLogOut = () => {
+        logOut()
+            .then(result => {
+                console.log(result.user)
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
+    }
 
     return (
         <div>
@@ -53,7 +66,22 @@ const Navbar = () => {
                     <ul className="menu menu-horizontal px-1">
                         {links}
                     </ul>
-                    <Link to='/login' className="btn bg-[#F63E7B] text-white px-10">Login</Link>
+                    <div className="mr-3">
+                        {
+                            user && (<div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div title={user?.displayName} className="w-10 rounded-full">
+                                    <img
+                                        alt="Tailwind CSS Navbar component"
+                                        src={user?.photoURL} />
+                                </div>
+                            </div>)
+                        }
+                    </div>
+                    {
+                        user ? <>
+                            <button onClick={handleLogOut} className="btn bg-[#F63E7B] text-white px-10">LogOut</button>
+                        </> : <Link to='/login' className="btn bg-[#F63E7B] text-white px-10">Login</Link>
+                    }
                 </div>
             </div>
         </div>
