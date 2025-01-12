@@ -16,7 +16,7 @@ const Navbar = () => {
     const handleLogOut = () => {
         logOut()
             .then(result => {
-                console.log(result.user)
+                // console.log(result.user)
             })
             .catch(err => {
                 console.log(err.message)
@@ -70,7 +70,7 @@ const Navbar = () => {
                         {
                             user && (<div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                 <div title={user?.displayName} className="w-10 rounded-full">
-                                    <img
+                                    <img referrerPolicy='no-referrer'
                                         alt="Tailwind CSS Navbar component"
                                         src={user?.photoURL} />
                                 </div>
