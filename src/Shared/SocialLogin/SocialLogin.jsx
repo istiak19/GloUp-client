@@ -1,15 +1,27 @@
 import { useNavigate } from 'react-router-dom';
 import google from '../../assets/assets/icons/Group 573.png'
 import useAuth from '../../Hook/useAuth'
+import useAxiosPublic from '../../Hook/useAxiosPublic';
+import { toast } from 'react-toastify';
 const SocialLogin = () => {
     const { googleUser } = useAuth()
     const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic()
 
     const handleGoogle = () => {
         googleUser()
             .then((result => {
                 console.log(result.user)
-                navigate('/')
+                const userInfo = {
+                    name: result?.user?.displayName,
+                    email: result?.user?.email
+                }
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        console.log(res.data)
+                        navigate('/')
+                        toast.success('Login successfully')
+                    })
             }))
             .catch(err => {
                 console.log(err)

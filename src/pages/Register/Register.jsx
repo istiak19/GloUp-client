@@ -4,12 +4,15 @@ import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../Hook/useAuth';
 import axios from 'axios';
+import useAxiosPublic from '../../Hook/useAxiosPublic';
+import { toast } from 'react-toastify';
 
 const image_key = import.meta.env.VITE_IMAGE;
 const image_api = `https://api.imgbb.com/1/upload?key=${image_key}`
 
 const Register = () => {
     const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic();
     const { signUpUser, updateProfileUser } = useAuth()
     const { register, reset, handleSubmit } = useForm()
     const onSubmit = async (data) => {
@@ -25,8 +28,17 @@ const Register = () => {
                 console.log(result.user)
                 updateProfileUser(data.name, res.data.data.url)
                     .then(() => {
-                        reset()
-                        navigate('/')
+                        const userInfo = {
+                            name: data?.name,
+                            email: data?.email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                console.log(res.data)
+                                reset()
+                                navigate('/')
+                                toast.success('Register Successfully')
+                            })
                     })
                     .catch(err => {
                         console.log(err.message)
